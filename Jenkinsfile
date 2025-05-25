@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Cloner le projet') {
-            steps {
-                git branch: 'main', url: 'https://github.com/Celicin-R206/T-DevOps.git'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 sh 'docker build --no-cache -t nextjs-app .'
@@ -23,7 +17,7 @@ pipeline {
 
         stage('Run container') {
             steps {
-                sh 'docker run -d -p 3000:3000 --name nextjs-app nextjs-app'
+                sh 'docker run -d -p 3001:3000 --name nextjs-app nextjs-app'
             }
         }
     }
