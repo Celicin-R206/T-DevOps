@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Cloner le projet') {
             steps {
-                git 'https://github.com/Celicin-R206/T-DevOps.git'
+                git branch: 'main', url: 'https://github.com/Celicin-R206/T-DevOps.git'
             }
         }
 
