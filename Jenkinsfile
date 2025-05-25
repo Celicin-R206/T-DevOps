@@ -10,7 +10,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t nextjs-app .'
+                sh 'docker build --no-cache -t nextjs-app .'
             }
         }
 
@@ -25,6 +25,15 @@ pipeline {
             steps {
                 sh 'docker run -d -p 3000:3000 --name nextjs-app nextjs-app'
             }
+        }
+    }
+
+    post {
+        failure {
+            echo 'Pipeline failed. Check logs for details.'
+        }
+        success {
+            echo 'Pipeline completed successfully!'
         }
     }
 }
